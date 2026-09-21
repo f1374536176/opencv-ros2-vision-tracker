@@ -1,0 +1,10 @@
+build/
+install/
+log/
+*.o
+*.exe
+*.csv
+!sample_log.csv
+.vscode/
+.idea/
+.DS_Store
