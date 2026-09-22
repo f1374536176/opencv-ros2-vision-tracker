@@ -21,6 +21,7 @@
 
 
 ## 目录结构
+```text
 .
 ├── README.md
 ├── CMakeLists.txt
@@ -33,7 +34,7 @@
 └── scripts/
     ├── plot_log.py               # 绘制控制响应曲线与统计
     └── kalman_filter.py          # 卡尔曼滤波平滑示例
-
+```
 
 ---
 
