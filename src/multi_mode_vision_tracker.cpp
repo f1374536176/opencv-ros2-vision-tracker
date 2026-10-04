@@ -433,6 +433,8 @@ private:
     void calibrateHSV(Mat &frame, Rect roi) {
         if (roi.x < 0) roi.x = 0;
         if (roi.y < 0) roi.y = 0;
+        if (roi.x > frame.cols) roi.x = frame.cols;
+        if (roi.y > frame.rows) roi.y = frame.rows;
         if (roi.x + roi.width > frame.cols) roi.width = frame.cols - roi.x;
         if (roi.y + roi.height > frame.rows) roi.height = frame.rows - roi.y;
         if (roi.width <= 0 || roi.height <= 0) return;

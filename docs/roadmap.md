@@ -10,8 +10,8 @@
 | 2 | 轨迹追踪 | deque 滑动窗口、轨迹绘制 | [trajectory.md](trajectory.md) |
 | 3 | 光照自适应 | 中央 ROI 自动取色、动态容差 | [hsv_basic.md](hsv_basic.md) |
 | 4 | 鼠标标定 | setMouseCallback、鼠标框选 ROI | [mouse_roi_calibration.md](mouse_roi_calibration.md) |
-| 5 | 相机内参标定 | 棋盘格检测、calibrateCamera、RMS=0.459 | [camera_calibration.md](camera_calibration.md) |
-| 6 | ArUco 位姿估计 | solvePnP、坐标轴绘制、Z 轴测距 | [aruco_pose.md](aruco_pose.md) |
+| 5 | 相机内参标定 | 棋盘格检测、calibrateCamera、RMS | [camera_calibration.md](camera_calibration.md) |
+| 6 | ArUco 位姿估计 | solvePnP、坐标轴绘制、Z 轴测距 | [aruco_pose.md](aruco_pose.md) | 
 | 7 | ROS2 节点 | 单文件 OpenCV → ROS2 节点 | [ros2_node.md](ros2_node.md) |
 | 8 | 视觉伺服（纯 P） | 归一化误差、Twist 发布 | [visual_servo_p.md](visual_servo_p.md) |
 | 9 | CSV 日志 | 控制曲线记录、Python 绘图、指标统计 | [csv_logging.md](csv_logging.md) |

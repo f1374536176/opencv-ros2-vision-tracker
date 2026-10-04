@@ -15,6 +15,49 @@
 - **解决**：在已配置好的 ROS2 功能包下编译，靠 CMake 处理依赖
 - **影响主题**：hsv_basic、trajectory、camera_calibration、aruco_pose...
 
+### 新建 `.cpp` 新建程序需要修改 CMakeLists.txt
+
+> 注：本篇的 CMakeLists 是 ROS2 ament 包的写法。纯 CMake 项目要用 `find_package(OpenCV REQUIRED)` + `target_link_libraries`。
+
+- **现象**：新建 `camera_calibration.cpp` 后编译报错，找不到 `main` 或找不到 OpenCV 符号。
+- **根因**：CMake 默认不会自动编译新文件，必须显式声明。
+- **解决**：在 `CMakeLists.txt` 里仿照原有结构添加新程序部分
+
+```cmake
+# ===== 模板：新建程序时复制这一段，按需删减依赖 =====
+add_executable(<程序名> src/<源文件名>.cpp)
+target_include_directories(<程序名> PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+target_compile_features(<程序名> PUBLIC c_std_99 cxx_std_17)
+ament_target_dependencies(
+  <程序名>
+  # 按需保留以下依赖，用不到的删掉
+  "rclcpp"
+  "OpenCV"
+  "sensor_msgs"
+  "cv_bridge"
+  "image_transport"
+  "geometry_msgs"
+)
+
+install(TARGETS <程序名>
+  DESTINATION lib/${PROJECT_NAME})
+
+# ===== 实际例子：camera_calibration 只用 OpenCV =====
+add_executable(camera_calibration src/camera_calibration.cpp)
+target_include_directories(camera_calibration PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+target_compile_features(camera_calibration PUBLIC c_std_99 cxx_std_17)
+ament_target_dependencies(
+  camera_calibration
+  "OpenCV"
+)
+install(TARGETS camera_calibration
+  DESTINATION lib/${PROJECT_NAME})
+```
+
 ## 摄像头
 
 ### 摄像头无权限
